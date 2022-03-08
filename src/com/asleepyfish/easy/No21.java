@@ -70,12 +70,14 @@ public class No21 {
         if (list2 == null) {
             return list1;
         }
+        ListNode res;
         if (list1.val <= list2.val) {
-            list1.next = mergeTwoLists(list1.next, list2);
-            return list1;
+            res = list1;
+            res.next = mergeTwoLists(list1.next, list2);
         } else {
-            list2.next = mergeTwoLists(list1, list2.next);
-            return list2;
+            res = list2;
+            res.next = mergeTwoLists(list1, list2.next);
         }
+        return res;
     }
 }
