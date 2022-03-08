@@ -1,5 +1,6 @@
 package com.asleepyfish.easy;
 
+
 import com.asleepyfish.ListNode;
 
 /**
@@ -25,7 +26,56 @@ import com.asleepyfish.ListNode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No21 {
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        return null;
+    public static void main(String[] args) {
+        ListNode list1 = new ListNode(1);
+        list1.next = new ListNode();
+        list1.next.val = 3;
+        ListNode list2 = new ListNode(2);
+        list2.next = new ListNode();
+        list2.next.val = 4;
+        ListNode listNode = mergeTwoLists2(list1, list2);
+        while (listNode != null) {
+            System.out.println(listNode.val);
+            listNode = listNode.next;
+        }
+    }
+
+    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if (list1 == null) {
+            return list2;
+        }
+        if (list2 == null) {
+            return list1;
+        }
+        ListNode p = new ListNode(-1);
+        ListNode q = p;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                q.next = list1;
+                list1 = list1.next;
+            } else {
+                q.next = list2;
+                list2 = list2.next;
+            }
+            q = q.next;
+        }
+        q.next = list1 == null ? list2 : list1;
+        return p.next;
+    }
+
+    public static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
+        if (list1 == null) {
+            return list2;
+        }
+        if (list2 == null) {
+            return list1;
+        }
+        if (list1.val <= list2.val) {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
+        } else {
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
+        }
     }
 }
