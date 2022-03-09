@@ -41,6 +41,7 @@ import java.util.Set;
 public class No26 {
     /**
      * 每个数字和前一个数字比较，如果相等则继续，不相等插入到一个已经记录不同个数的位置上
+     * 使用方法4，原地修改
      */
     public static void main(String[] args) {
         int[] nums = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5};
