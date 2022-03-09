@@ -1,5 +1,9 @@
 package com.asleepyfish.easy;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-08 19:25
@@ -35,7 +39,51 @@ package com.asleepyfish.easy;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No26 {
-    public int removeDuplicates(int[] nums) {
-        return 0;
+    /**
+     * 每个数字和前一个数字比较，如果相等则继续，不相等插入到一个已经记录不同个数的位置上
+     */
+    public static void main(String[] args) {
+        int[] nums = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5};
+        System.out.println(removeDuplicates4(nums));
     }
+
+    public static int removeDuplicates(int[] nums) {
+        return (int) Arrays.stream(nums).distinct().count();
+    }
+
+    public static int removeDuplicates2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        return set.size();
+    }
+
+    private static int removeDuplicates3(int[] nums) {
+        int length = nums.length;
+        int[] res = new int[length];
+        int ans = 0;
+        res[0] = nums[0];
+        for (int num : nums) {
+            if (num != res[ans]) {
+                res[++ans] = num;
+            }
+        }
+        nums = res;
+        return ans + 1;
+    }
+
+    private static int removeDuplicates4(int[] nums) {
+        if (nums.length < 2) {
+            return nums.length;
+        }
+        int res = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[res++] = nums[i];
+            }
+        }
+        return res;
+    }
+
 }
