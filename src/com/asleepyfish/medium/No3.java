@@ -1,5 +1,8 @@
 package com.asleepyfish.medium;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-09 20:48
@@ -26,7 +29,32 @@ package com.asleepyfish.medium;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No3 {
-    public int lengthOfLongestSubstring(String s) {
-        return 0;
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring("sbbbaabb"));
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        if (s.length() < 2) {
+            return s.length();
+        }
+        int res = 0;
+        int tmp = 1;
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            set.add(s.charAt(i));
+            if (set.size() == tmp) {
+                tmp++;
+            } else {
+                if (tmp > res) {
+                    res = tmp;
+                }
+                tmp = 1;
+                i = i - set.size() + 1;
+                set = new HashSet<>();
+            }
+        }
+        return --res;
     }
 }

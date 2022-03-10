@@ -28,7 +28,53 @@ import com.asleepyfish.ListNode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No2 {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(2);
+        ListNode p1 = l1;
+        l1.next = new ListNode(4);
+        l1 = l1.next;
+        l1.next = new ListNode(3);
+        ListNode l2 = new ListNode(5);
+        ListNode p2 = l2;
+        l2.next = new ListNode(6);
+        l2 = l2.next;
+        l2.next = new ListNode(4);
+        ListNode res = addTwoNumbers(p1, p2);
+        while (res != null) {
+            System.out.println(res.val);
+            res = res.next;
+        }
+    }
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(-1);
+        ListNode p = res;
+        int low;
+        int high = 0;
+        while (l1 != null && l2 != null) {
+            int tmp = l1.val + l2.val;
+            low = (tmp + high) % 10;
+            high = (tmp + high) / 10;
+            p.next = new ListNode(low);
+            l1 = l1.next;
+            l2 = l2.next;
+            p = p.next;
+        }
+        while (l1 != null) {
+            p.next = new ListNode((high + l1.val) % 10);
+            high = (high + l1.val) / 10;
+            l1 = l1.next;
+            p = p.next;
+        }
+        while (l2 != null) {
+            p.next = new ListNode((high + l2.val) % 10);
+            high = (high + l2.val) / 10;
+            l2 = l2.next;
+            p = p.next;
+        }
+        if (high != 0) {
+            p.next = new ListNode(high);
+        }
+        return res.next;
     }
 }
