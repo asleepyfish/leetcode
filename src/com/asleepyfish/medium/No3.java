@@ -30,6 +30,10 @@ import java.util.Set;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No3 {
+    /**
+     * abcbad来思考滑动窗口
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring("abcabcbb"));
         System.out.println(lengthOfLongestSubstring("sbbbaabb"));
@@ -66,13 +70,16 @@ public class No3 {
             return s.length();
         }
         HashMap<Character, Integer> map = new HashMap<>();
+        // 随时记录遍历过程中遇到的最长字串的长度
         int max = 0;
+        // 从左开始算最长字串的下标指针
         int left = 0;
         for (int i = 0; i < s.length(); i++) {
             if (map.containsKey(s.charAt(i))) {
                 left = Math.max(left, map.get(s.charAt(i)) + 1);
             }
             map.put(s.charAt(i), i);
+            // 每一步都更新
             max = Math.max(max, i - left + 1);
         }
         return max;
