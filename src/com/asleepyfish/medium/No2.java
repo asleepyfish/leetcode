@@ -49,11 +49,10 @@ public class No2 {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode res = new ListNode(-1);
         ListNode p = res;
-        int low;
         int high = 0;
         while (l1 != null && l2 != null) {
             int tmp = l1.val + l2.val;
-            low = (tmp + high) % 10;
+            int low = (tmp + high) % 10;
             high = (tmp + high) / 10;
             p.next = new ListNode(low);
             l1 = l1.next;

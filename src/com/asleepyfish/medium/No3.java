@@ -1,5 +1,6 @@
 package com.asleepyfish.medium;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +34,8 @@ public class No3 {
         System.out.println(lengthOfLongestSubstring("abcabcbb"));
         System.out.println(lengthOfLongestSubstring("sbbbaabb"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
+        System.out.println(lengthOfLongestSubstring("ab"));
+        System.out.println(lengthOfLongestSubstring("aab"));
     }
 
     public static int lengthOfLongestSubstring(String s) {
@@ -47,14 +50,31 @@ public class No3 {
             if (set.size() == tmp) {
                 tmp++;
             } else {
-                if (tmp > res) {
-                    res = tmp;
-                }
                 tmp = 1;
-                i = i - set.size() + 1;
+                i = i - set.size();
                 set = new HashSet<>();
+            }
+            if (tmp > res) {
+                res = tmp;
             }
         }
         return --res;
+    }
+
+    public static int lengthOfLongestSubstring2(String s) {
+        if (s.length() < 2) {
+            return s.length();
+        }
+        HashMap<Character, Integer> map = new HashMap<>();
+        int max = 0;
+        int left = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
+            }
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
+        }
+        return max;
     }
 }
