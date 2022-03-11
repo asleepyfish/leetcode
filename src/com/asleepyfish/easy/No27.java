@@ -36,6 +36,15 @@ package com.asleepyfish.easy;
  */
 public class No27 {
     public int removeElement(int[] nums, int val) {
-        return 0;
+        if (nums.length == 0) {
+            return 0;
+        }
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[res++] = nums[i];
+            }
+        }
+        return res;
     }
 }

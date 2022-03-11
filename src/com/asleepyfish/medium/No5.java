@@ -21,6 +21,22 @@ package com.asleepyfish.medium;
  */
 public class No5 {
     public String longestPalindrome(String s) {
+        if (s.length() == 0) {
+            return "";
+        }
+        int longest = 1;
+        String res = "";
+        int left = 0;
+        while (left < s.length()) {
+            // if (s.substring())
+        }
         return null;
+    }
+
+    private boolean isPalindrome(String s) {
+        if (s.length() == 0) {
+            return false;
+        }
+        return new StringBuilder(s).reverse().toString().equals(s);
     }
 }
