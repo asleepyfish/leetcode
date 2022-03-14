@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-13 22:23
@@ -20,15 +23,23 @@ package com.asleepyfish.sword;
  * 最多会对appendTail、deleteHead 进行10000次调用
  */
 public class S09 {
+    Deque<Integer> stack1;
+    Deque<Integer> stack2;
+
     public S09() {
+        stack1 = new LinkedList<>();
+        stack2 = new LinkedList<>();
     }
 
     public void appendTail(int value) {
-
+        stack1.add(value);
     }
 
     public int deleteHead() {
-        return 0;
+        while (!stack1.isEmpty()) {
+            stack2.add(stack1.pop());
+        }
+        return stack2.isEmpty() ? -1 : stack2.pop();
     }
 }
 /**

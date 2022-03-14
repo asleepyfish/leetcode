@@ -1,5 +1,9 @@
 package com.asleepyfish.sword;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Objects;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-13 22:26
@@ -21,24 +25,34 @@ public class S30 {
     /**
      * initialize your data structure here.
      */
-    public S30() {
+    Deque<Integer> stack1;
+    Deque<Integer> stack2;
 
+    public S30() {
+        stack1 = new LinkedList<>();
+        stack2 = new LinkedList<>();
     }
 
     public void push(int x) {
-
+        stack1.push(x);
+        if (stack2.isEmpty() || x < stack2.peek()) {
+            stack2.push(x);
+        }
     }
 
     public void pop() {
-
+        if (Objects.equals(stack1.peek(), stack2.peek())) {
+            stack2.pop();
+        }
+        stack1.pop();
     }
 
     public int top() {
-        return 0;
+        return stack1.peek();
     }
 
     public int min() {
-        return 0;
+        return stack2.peek();
     }
 }
 /**
