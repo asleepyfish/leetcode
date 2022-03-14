@@ -35,7 +35,8 @@ public class S30 {
 
     public void push(int x) {
         stack1.push(x);
-        if (stack2.isEmpty() || x < stack2.peek()) {
+        // 这里一定要小于等于，比如0，1，0，把0pop出去以后，还有个0，如果之前没push后面的0就会空指针
+        if (stack2.isEmpty() || x <= stack2.peek()) {
             stack2.push(x);
         }
     }
