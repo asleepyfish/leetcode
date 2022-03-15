@@ -6,9 +6,9 @@ package com.asleepyfish;
  * @Description: TODO
  */
 public class Node {
-    int val;
-    Node next;
-    Node random;
+    public int val;
+    public Node next;
+    public Node random;
 
     public Node(int val) {
         this.val = val;

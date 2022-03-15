@@ -3,6 +3,8 @@ package com.asleepyfish.sword;
 import com.asleepyfish.ListNode;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * @Author: asleepyfish
@@ -20,19 +22,24 @@ public class S06 {
         ListNode x = new ListNode(2);
         x.next = new ListNode(1);
         x.next.next = new ListNode(3);
-        System.out.println(Arrays.toString(reversePrint(x)));
+        System.out.println(Arrays.toString(reversePrint2(x)));
     }
 
     public static int[] reversePrint(ListNode head) {
-        ListNode p = new ListNode(head.val);
-        ListNode q = head.next;
-        int len = 1;
-        while (q != null) {
+        if (head == null) {
+            return new int[0];
+        }
+        // 使用指针p用来逆转
+        ListNode p = null;
+        int len = 0;
+        while (head != null) {
+            // 记录长度
             len++;
-            ListNode tmp = q.next;
-            q.next = p;
-            p = q;
-            q = tmp;
+            // 记录head的下一个避免等会被覆盖
+            ListNode tmp = head.next;
+            head.next = p;
+            p = head;
+            head = tmp;
         }
         int[] res = new int[len];
         int j = 0;
@@ -40,6 +47,22 @@ public class S06 {
             res[j] = p.val;
             j++;
             p = p.next;
+        }
+        return res;
+    }
+
+    public static int[] reversePrint2(ListNode head) {
+        if (head == null) {
+            return new int[0];
+        }
+        Deque<Integer> stack = new LinkedList<>();
+        while (head != null) {
+            stack.push(head.val);
+            head = head.next;
+        }
+        int[] res = new int[stack.size()];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = stack.pop();
         }
         return res;
     }

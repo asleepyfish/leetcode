@@ -22,14 +22,16 @@ public class S24 {
     }
 
     public static ListNode reverseList(ListNode head) {
-        ListNode l = new ListNode(head.val);
-        ListNode r = head.next;
-        while (r != null) {
-            ListNode tmp = r.next;
-            r.next = l;
-            l = r;
-            r = tmp;
+        if (head == null) {
+            return null;
         }
-        return l;
+        ListNode res = null;
+        while (head != null) {
+            ListNode tmp = head.next;
+            head.next = res;
+            res = head;
+            head = tmp;
+        }
+        return res;
     }
 }
