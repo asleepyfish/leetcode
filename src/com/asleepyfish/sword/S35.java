@@ -43,6 +43,9 @@ public class S35 {
         cur = head;
         // 构建新链表的 next 和 random 指向
         while (cur != null) {
+            // map.get()里面拿到的都是新的返回的Node的东西，get（x）里面的x是原来的Node。
+            // 第一个新节点的next指向map中原来节点的下一个节点对应的value值（新节点）
+            // 左边是next和random指针指向两个节点，都是新创建的和原来的head无关，从map里取出来的
             map.get(cur).next = map.get(cur.next);
             map.get(cur).random = map.get(cur.random);
             cur = cur.next;
