@@ -14,7 +14,22 @@ import com.asleepyfish.ListNode;
  * 0 <= 节点个数 <= 5000
  */
 public class S24 {
-    public ListNode reverseList(ListNode head) {
-        return null;
+    public static void main(String[] args) {
+        ListNode head = new ListNode(3);
+        head.next = new ListNode(1);
+        head.next.next = new ListNode(2);
+        System.out.println(reverseList(head));
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        ListNode l = new ListNode(head.val);
+        ListNode r = head.next;
+        while (r != null) {
+            ListNode tmp = r.next;
+            r.next = l;
+            l = r;
+            r = tmp;
+        }
+        return l;
     }
 }
