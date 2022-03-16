@@ -1,7 +1,5 @@
 package com.asleepyfish.sword;
 
-import java.util.Arrays;
-
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-15 22:24
@@ -27,6 +25,10 @@ public class S58 {
         for (int i = 0; i < move; i++) {
             res[j++] = s.charAt(i);
         }
-        return Arrays.toString(res);
+        return new String(res, 0, j);
+    }
+
+    public String reverseLeftWords2(String s, int n) {
+        return s.substring(n) + s.substring(0, n);
     }
 }
