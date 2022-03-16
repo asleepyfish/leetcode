@@ -13,6 +13,6 @@ package com.asleepyfish.sword;
  */
 public class S05 {
     public String replaceSpace(String s) {
-        return null;
+        return s.replace(" ", "%20");
     }
 }
