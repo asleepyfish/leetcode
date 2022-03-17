@@ -15,7 +15,20 @@ package com.asleepyfish.sword;
  * 1 <= 数组长度 <= 10000
  */
 public class S53II {
-    public int missingNumber(int[] nums) {
-        return 0;
+    public static void main(String[] args) {
+        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
+        System.out.println(missingNumber(nums));
+    }
+
+    public static int missingNumber(int[] nums) {
+        int res = 0;
+        for (int num : nums) {
+            if (num == res) {
+                res++;
+            } else {
+                break;
+            }
+        }
+        return res;
     }
 }

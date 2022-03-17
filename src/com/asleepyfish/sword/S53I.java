@@ -19,6 +19,18 @@ package com.asleepyfish.sword;
  */
 public class S53I {
     public int search(int[] nums, int target) {
-        return 0;
+        if (nums.length == 0 || target < nums[0]) {
+            return 0;
+        }
+        int res = 0;
+        for (int num : nums) {
+            if (target < num) {
+                break;
+            }
+            if (target == num) {
+                res++;
+            }
+        }
+        return res;
     }
 }

@@ -15,6 +15,13 @@ package com.asleepyfish.sword;
  */
 public class S03 {
     public int findRepeatNumber(int[] nums) {
+        int[] arr = new int[nums.length];
+        for (int num : nums) {
+            if (arr[num] > 0) {
+                return num;
+            }
+            arr[num]++;
+        }
         return 0;
     }
 }
