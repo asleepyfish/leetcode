@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-16 22:38
@@ -23,5 +26,18 @@ public class S03 {
             arr[num]++;
         }
         return 0;
+    }
+
+    public int findRepeatNumber2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        int repeat = -1;
+        for (int num : nums) {
+            // set.add()返回值是bool类型的可以用来判断是否添加成功
+            if (!set.add(num)) {
+                repeat = num;
+                break;
+            }
+        }
+        return repeat;
     }
 }

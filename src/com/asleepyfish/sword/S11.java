@@ -14,6 +14,11 @@ package com.asleepyfish.sword;
  * 输出：0
  */
 public class S11 {
+    public static void main(String[] args) {
+        int[] nums = {10, 1, 10, 10, 10};
+        System.out.println(minArray2(nums));
+    }
+
     public int minArray(int[] numbers) {
         if (numbers.length == 0) {
             return -1;
@@ -28,27 +33,23 @@ public class S11 {
         return min;
     }
 
-    public int minArray2(int[] numbers) {
+    public static int minArray2(int[] numbers) {
         if (numbers.length == 0) {
             return -1;
         }
-        return binarySearch(numbers, numbers[0]);
-    }
-
-    private int binarySearch(int[] numbers, int min) {
         int left = 0;
         int right = numbers.length - 1;
-        while (left <= right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
-            // 当中间节点小于最小值时，记录一下，并且最小值只可能在左侧（包含，可能当前值为最小值），令right = mid
-            if (numbers[mid] < min) {
-                min = numbers[mid];
+            if (numbers[mid] > numbers[right]) {
+                left = mid + 1;
+            } else if (numbers[mid] < numbers[right]) {
                 right = mid;
             } else {
-                // 中间节点大于等于最小值时候，最小值一定在右边
-                left = mid + 1;
+                right--;
             }
         }
-        return min;
+        return numbers[left];
     }
+
 }
