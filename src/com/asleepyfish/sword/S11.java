@@ -15,6 +15,40 @@ package com.asleepyfish.sword;
  */
 public class S11 {
     public int minArray(int[] numbers) {
-        return 0;
+        if (numbers.length == 0) {
+            return -1;
+        }
+        int min = numbers[0];
+        for (int number : numbers) {
+            if (number < min) {
+                min = number;
+                break;
+            }
+        }
+        return min;
+    }
+
+    public int minArray2(int[] numbers) {
+        if (numbers.length == 0) {
+            return -1;
+        }
+        return binarySearch(numbers, numbers[0]);
+    }
+
+    private int binarySearch(int[] numbers, int min) {
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            // 当中间节点小于最小值时，记录一下，并且最小值只可能在左侧（包含，可能当前值为最小值），令right = mid
+            if (numbers[mid] < min) {
+                min = numbers[mid];
+                right = mid;
+            } else {
+                // 中间节点大于等于最小值时候，最小值一定在右边
+                left = mid + 1;
+            }
+        }
+        return min;
     }
 }

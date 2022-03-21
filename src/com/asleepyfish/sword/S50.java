@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * @Author: zhoujh42045
  * @Date: 2022/3/17 20:00
@@ -16,6 +19,17 @@ package com.asleepyfish.sword;
  */
 public class S50 {
     public char firstUniqChar(String s) {
-        return ' ';
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        char res = ' ';
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                res = entry.getKey();
+                break;
+            }
+        }
+        return res;
     }
 }
