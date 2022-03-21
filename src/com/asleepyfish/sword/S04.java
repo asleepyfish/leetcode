@@ -43,4 +43,24 @@ public class S04 {
         }
         return false;
     }
+
+    public boolean findNumberIn2DArray2(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
+            return false;
+        }
+        int row = matrix.length - 1;
+        int col = matrix[0].length - 1;
+        int i = row;
+        int j = 0;
+        while (i >= 0 && j <= col) {
+            if (matrix[i][j] == target) {
+                return true;
+            } else if (matrix[i][j] > target) {
+                i--;
+            } else {
+                j++;
+            }
+        }
+        return false;
+    }
 }
