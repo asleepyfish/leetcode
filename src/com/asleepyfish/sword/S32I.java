@@ -23,6 +23,28 @@ import com.asleepyfish.TreeNode;
  */
 public class S32I {
     public int[] levelOrder(TreeNode root) {
-        return null;
+        if (root == null) {
+            return new int[0];
+        }
+        // 因为不知道最后返回的数组的大小，使用list暂存一下
+        List<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        TreeNode tmp;
+        while (queue.size() != 0) {
+            tmp = queue.poll();
+            list.add(tmp.val);
+            if (tmp.left != null) {
+                queue.add(tmp.left);
+            }
+            if (tmp.right != null) {
+                queue.add(tmp.right);
+            }
+        }
+        int[] res = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            res[i] = list.get(i);
+        }
+        return res;
     }
 }
