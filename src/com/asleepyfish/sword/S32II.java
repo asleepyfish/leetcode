@@ -2,7 +2,10 @@ package com.asleepyfish.sword;
 
 import com.asleepyfish.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @Author: asleepyfish
@@ -29,6 +32,28 @@ import java.util.List;
  */
 public class S32II {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        return null;
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            // 这里需要注意如果for循环中使用queue.size()直接用，因为不断往queue中放，queue的长度会增加。倒序的话可以
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                list.add(poll.val);
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+            }
+            res.add(list);
+        }
+        return res;
     }
 }

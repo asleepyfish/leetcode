@@ -2,6 +2,11 @@ package com.asleepyfish.sword;
 
 import com.asleepyfish.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-21 22:16
@@ -30,9 +35,8 @@ public class S32I {
         List<Integer> list = new ArrayList<>();
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
-        TreeNode tmp;
         while (queue.size() != 0) {
-            tmp = queue.poll();
+            TreeNode tmp = queue.poll();
             list.add(tmp.val);
             if (tmp.left != null) {
                 queue.add(tmp.left);

@@ -2,7 +2,7 @@ package com.asleepyfish.sword;
 
 import com.asleepyfish.TreeNode;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: asleepyfish
@@ -29,6 +29,32 @@ import java.util.List;
  */
 public class S32III {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        return null;
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            int queueSize = queue.size();
+            int listSize = res.size();
+            for (int i = 0; i < queueSize; i++) {
+                TreeNode poll = queue.poll();
+                list.add(poll.val);
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+            }
+            if (listSize % 2 == 0) {
+                Collections.reverse(list);
+            }
+            res.add(list);
+
+        }
+        return res;
     }
 }
