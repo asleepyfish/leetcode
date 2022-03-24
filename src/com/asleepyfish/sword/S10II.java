@@ -19,7 +19,29 @@ package com.asleepyfish.sword;
  * 0 <= n <= 100
  */
 public class S10II {
-    public int numWays(int n) {
-        return 0;
+    public static void main(String[] args) {
+        System.out.println(numWays(7));
+        System.out.println(numWays2(7));
+    }
+    public static int numWays(int n) {
+        if (n < 2) {
+            return 1;
+        }
+        return (numWays(n - 1) + numWays(n - 2)) % 1000000007;
+    }
+
+    public static int numWays2(int n) {
+        if (n < 2) {
+            return 1;
+        }
+        int fast = 1;
+        int slow = 1;
+        int res = 0;
+        for (int i = 2; i <= n; i++) {
+            res = (fast + slow) % 1000000007;
+            slow = fast;
+            fast = res;
+        }
+        return res;
     }
 }
