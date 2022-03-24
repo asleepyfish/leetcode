@@ -18,7 +18,20 @@ package com.asleepyfish.sword;
  * 0 <= 数组长度 <= 10^5
  */
 public class S63 {
-    public int maxProfit(int[] prices) {
-        return 0;
+    public static void main(String[] args) {
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        System.out.println(maxProfit(prices));
+    }
+
+    public static int maxProfit(int[] prices) {
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[j] - prices[i] > res) {
+                    res = prices[j] - prices[i];
+                }
+            }
+        }
+        return Math.max(res, 0);
     }
 }
