@@ -24,24 +24,24 @@ public class S10II {
         System.out.println(numWays2(7));
     }
     public static int numWays(int n) {
-        if (n == 0 || n == 1) {
+        if (n < 2) {
             return 1;
         }
         return (numWays(n - 1) + numWays(n - 2)) % 1000000007;
     }
 
     public static int numWays2(int n) {
-        if (n == 0 || n == 1) {
+        if (n < 2) {
             return 1;
         }
         int fast = 1;
         int slow = 1;
         int res = 0;
         for (int i = 2; i <= n; i++) {
-            res = fast + slow;
+            res = (fast + slow) % 1000000007;
             slow = fast;
             fast = res;
         }
-        return res % 1000000007;
+        return res;
     }
 }

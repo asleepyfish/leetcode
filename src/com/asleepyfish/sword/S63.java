@@ -20,7 +20,7 @@ package com.asleepyfish.sword;
 public class S63 {
     public static void main(String[] args) {
         int[] prices = {7, 1, 5, 3, 6, 4};
-        System.out.println(maxProfit(prices));
+        System.out.println(maxProfit2(prices));
     }
 
     public static int maxProfit(int[] prices) {
@@ -33,5 +33,30 @@ public class S63 {
             }
         }
         return Math.max(res, 0);
+    }
+
+    public static int maxProfit2(int[] prices) {
+        int res = 0;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            } else if ((prices[i] - min) > res) {
+                res = prices[i] - min;
+            }
+        }
+        return res;
+    }
+
+    // 前i日的最大收益等于（前i - 1日的最大收益）和（第i日的价格和前i - 1日中最小价格的差值）中最大值，需要保存一下最小价格min
+    // dp[i]=max(dp[i−1],prices[i]−min(min,prices[i])
+    public static int maxProfit3(int[] prices) {
+        int min = Integer.MAX_VALUE;
+        int profit = 0;
+        for (int price : prices) {
+            min = Math.min(min, price);
+            profit = Math.max(profit, price - min);
+        }
+        return profit;
     }
 }
