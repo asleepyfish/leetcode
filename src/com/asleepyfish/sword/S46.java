@@ -14,6 +14,40 @@ package com.asleepyfish.sword;
  */
 public class S46 {
     public int translateNum(int num) {
-        return 0;
+        String s = String.valueOf(num);
+        if (s.length() < 2) {
+            return 1;
+        }
+        int[] dp = new int[s.length() + 1];
+        dp[s.length()] = 0;
+        dp[s.length() - 1] = 1;
+        for (int i = s.length() - 2; i >= 0; i--) {
+            int tmp = 0;
+            int value = Integer.parseInt(s.substring(i, i + 2));
+            if (value >= 0 && value <= 25) {
+                tmp = 1;
+            }
+            dp[i] = dp[i + 1] + dp[i + 2] * tmp;
+        }
+        return dp[0];
+    }
+
+    public int translateNum2(int num) {
+        String s = String.valueOf(num);
+        if (s.length() < 2) {
+            return 1;
+        }
+        int[] dp = new int[s.length()];
+        dp[0] = 1;
+        dp[1] = Integer.parseInt(s.substring(0, 2)) >= 10 && Integer.parseInt(s.substring(0, 2)) <= 25 ? 2 : 1;
+        for (int i = 2; i < s.length(); i++) {
+            int tmp = 0;
+            int value = Integer.parseInt(s.substring(i - 1, i + 1));
+            if (value >= 10 && value <= 25) {
+                tmp = 1;
+            }
+            dp[i] = dp[i - 1] + dp[i - 2] * tmp;
+        }
+        return dp[s.length() - 1];
     }
 }

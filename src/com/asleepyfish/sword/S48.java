@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-28 21:05
@@ -23,6 +26,22 @@ package com.asleepyfish.sword;
  */
 public class S48 {
     public int lengthOfLongestSubstring(String s) {
-        return 0;
+        if (s == null) {
+            return -1;
+        }
+        if (s.length() < 2) {
+            return s.length();
+        }
+        Map<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                left = Math.max(left, s.charAt(i) + 1);
+            }
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
+        }
+        return max;
     }
 }
