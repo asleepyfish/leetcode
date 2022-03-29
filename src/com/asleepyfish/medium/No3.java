@@ -32,7 +32,7 @@ public class No3 {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring2("pwwkew"));
         System.out.println(lengthOfLongestSubstring("sbbbaabb"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(lengthOfLongestSubstring("ab"));

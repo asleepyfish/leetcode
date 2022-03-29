@@ -10,7 +10,7 @@ package com.asleepyfish.sword;
  * 输出: 5
  * 解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
  * 提示：
- * 0 <= num < 231
+ * 0 <= num < 2^31
  */
 public class S46 {
     public int translateNum(int num) {
