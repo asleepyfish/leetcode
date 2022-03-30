@@ -33,8 +33,8 @@ public class S18 {
                 slow.next = fast.next;
                 break;
             }
+            slow = fast;
             fast = fast.next;
-            slow = slow.next;
         }
         return head;
     }

@@ -32,6 +32,13 @@ public class S46 {
         return dp[0];
     }
 
+    /**
+     * dp[i]={dp[i−1]+dp[i−2] ，当i-1和i位在10到25之间
+     * dp[i−1]
+     *
+     * @param num
+     * @return
+     */
     public int translateNum2(int num) {
         String s = String.valueOf(num);
         if (s.length() < 2) {
@@ -39,13 +46,9 @@ public class S46 {
         }
         int[] dp = new int[s.length()];
         dp[0] = 1;
-        dp[1] = Integer.parseInt(s.substring(0, 2)) >= 10 && Integer.parseInt(s.substring(0, 2)) <= 25 ? 2 : 1;
+        dp[1] = s.substring(0, 2).compareTo("10") >= 0 && s.substring(0, 2).compareTo("25") <= 0 ? 2 : 1;
         for (int i = 2; i < s.length(); i++) {
-            int tmp = 0;
-            int value = Integer.parseInt(s.substring(i - 1, i + 1));
-            if (value >= 10 && value <= 25) {
-                tmp = 1;
-            }
+            int tmp = s.substring(i - 1, i + 1).compareTo("10") >= 0 && s.substring(i - 1, i + 1).compareTo("25") <= 0 ? 1 : 0;
             dp[i] = dp[i - 1] + dp[i - 2] * tmp;
         }
         return dp[s.length() - 1];
