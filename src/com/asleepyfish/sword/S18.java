@@ -23,6 +23,19 @@ import com.asleepyfish.ListNode;
  */
 public class S18 {
     public ListNode deleteNode(ListNode head, int val) {
-        return null;
+        if (head.val == val) {
+            return head.next;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null) {
+            if (fast.val == val) {
+                slow.next = fast.next;
+                break;
+            }
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return head;
     }
 }
