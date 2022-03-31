@@ -2,6 +2,9 @@ package com.asleepyfish.sword;
 
 import com.asleepyfish.ListNode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-30 22:00
@@ -55,7 +58,7 @@ public class S52 {
         }
         ListNode res = null;
         while (headA != null) {
-            if (headA.val == headB.val) {
+            if (headA == headB) {
                 if (res == null) {
                     res = headA;
                 }
@@ -66,5 +69,34 @@ public class S52 {
             headB = headB.next;
         }
         return res;
+    }
+
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        Set<ListNode> visited = new HashSet<>();
+        ListNode temp = headA;
+        while (temp != null) {
+            visited.add(temp);
+            temp = temp.next;
+        }
+        temp = headB;
+        while (temp != null) {
+            if (visited.contains(temp)) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+
+    public ListNode getIntersectionNode3(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode pA = headA, pB = headB;
+        while (pA != pB) {
+            pA = pA == null ? headB : pA.next;
+            pB = pB == null ? headA : pB.next;
+        }
+        return pA;
     }
 }
