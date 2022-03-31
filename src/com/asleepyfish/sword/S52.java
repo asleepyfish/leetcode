@@ -30,6 +30,41 @@ import com.asleepyfish.ListNode;
  */
 public class S52 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        return null;
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode tmpA = headA;
+        ListNode tmpB = headB;
+        int a = 0;
+        int b = 0;
+        while (tmpA != null) {
+            a++;
+            tmpA = tmpA.next;
+        }
+        while (tmpB != null) {
+            b++;
+            tmpB = tmpB.next;
+        }
+        while (a > b) {
+            headA = headA.next;
+            a--;
+        }
+        while (a < b) {
+            headB = headB.next;
+            b--;
+        }
+        ListNode res = null;
+        while (headA != null) {
+            if (headA.val == headB.val) {
+                if (res == null) {
+                    res = headA;
+                }
+            } else {
+                res = null;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return res;
     }
 }
