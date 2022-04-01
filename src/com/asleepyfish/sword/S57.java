@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-03-31 22:28
@@ -17,6 +20,16 @@ package com.asleepyfish.sword;
  */
 public class S57 {
     public int[] twoSum(int[] nums, int target) {
-        return null;
+        int[] res = new int[2];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int tmp = target - nums[i];
+            if (map.containsKey(tmp)) {
+                res[0] = nums[i];
+                res[1] = nums[map.get(tmp)];
+            }
+            map.put(nums[i], i);
+        }
+        return res;
     }
 }

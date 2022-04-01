@@ -23,6 +23,15 @@ package com.asleepyfish.sword;
  */
 public class S58I {
     public String reverseWords(String s) {
-        return null;
+        if (s == null) {
+            return null;
+        }
+        String[] split = s.trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (int i = split.length - 1; i > 0; i--) {
+            sb.append(split[i]).append(" ");
+        }
+        sb.append(split[0]);
+        return sb.toString();
     }
 }

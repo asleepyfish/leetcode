@@ -15,6 +15,19 @@ package com.asleepyfish.sword;
  */
 public class S21 {
     public int[] exchange(int[] nums) {
-        return null;
+        if (nums.length == 0) {
+            return new int[0];
+        }
+        int[] res = new int[nums.length];
+        int left = 0;
+        int right = nums.length - 1;
+        for (int num : nums) {
+            if (num % 2 == 1) {
+                res[left++] = num;
+            } else {
+                res[right--] = num;
+            }
+        }
+        return res;
     }
 }
