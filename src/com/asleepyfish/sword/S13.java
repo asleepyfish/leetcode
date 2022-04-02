@@ -17,6 +17,20 @@ package com.asleepyfish.sword;
  */
 public class S13 {
     public int movingCount(int m, int n, int k) {
-        return 0;
+        boolean[] visited = new boolean[m * n];
+        return dfs(m, n, k, 0, 0, visited);
+    }
+
+    private int dfs(int m, int n, int k, int i, int j, boolean[] visited) {
+        int res = 0;
+        if (isLegal(i, j, k) && i >= 0 && j >= 0 && i < m && j < n && !visited[n * i + j]) {
+            visited[n * i + j] = true;
+            res = 1 + dfs(m, n, k, i - 1, j, visited) + dfs(m, n, k, i + 1, j, visited) + dfs(m, n, k, i, j - 1, visited) + dfs(m, n, k, i, j + 1, visited);
+        }
+        return res;
+    }
+
+    private boolean isLegal(int i, int j, int k) {
+        return i % 10 + i / 10 + j % 10 + j / 10 <= k;
     }
 }
