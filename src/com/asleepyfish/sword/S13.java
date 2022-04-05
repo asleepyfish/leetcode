@@ -22,12 +22,12 @@ public class S13 {
     }
 
     private int dfs(int m, int n, int k, int i, int j, boolean[] visited) {
-        int res = 0;
-        if (isLegal(i, j, k) && i >= 0 && j >= 0 && i < m && j < n && !visited[n * i + j]) {
-            visited[n * i + j] = true;
-            res = 1 + dfs(m, n, k, i - 1, j, visited) + dfs(m, n, k, i + 1, j, visited) + dfs(m, n, k, i, j - 1, visited) + dfs(m, n, k, i, j + 1, visited);
+        if (i < 0 || i >= m || j < 0 || j >= n || visited[i * n + j] || !isLegal(i, j, k)) {
+            return 0;
         }
-        return res;
+        visited[i * n + j] = true;
+        return 1 + dfs(m, n, k, i - 1, j, visited) + dfs(m, n, k, i + 1, j, visited) + dfs(m, n, k, i, j - 1, visited)
+                + dfs(m, n, k, i, j + 1, visited);
     }
 
     private boolean isLegal(int i, int j, int k) {

@@ -20,11 +20,9 @@ package com.asleepyfish.sword;
  */
 public class S12 {
     public boolean exist(char[][] board, String word) {
-        char[] words = word.toCharArray();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                //以i,j为起点，找words[0]
-                if (dfs(board, words, i, j, 0)) {
+                if (dfs(board, word, i, j, 0)) {
                     return true;
                 }
             }
@@ -32,20 +30,16 @@ public class S12 {
         return false;
     }
 
-    public boolean dfs(char[][] board, char[] words, int i, int j, int k) {
-        //越界或字符不匹配
-        if (i < 0 || j < 0 || i > board.length - 1 || j > board[0].length - 1 || board[i][j] != words[k]) {
-            return false;
-        }
-        //当前找到的已经是words的最后一个字符
-        if (k == words.length - 1) {
+    private boolean dfs(char[][] board, String word, int i, int j, int index) {
+        if (index == word.length()) {
             return true;
         }
-        char temp = board[i][j];
-        board[i][j] = ' ';
-        boolean res = dfs(board, words, i + 1, j, k + 1) || dfs(board, words, i - 1, j, k + 1) ||
-                dfs(board, words, i, j + 1, k + 1) || dfs(board, words, i, j - 1, k + 1);
-        board[i][j] = temp;
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != word.charAt(index)) {
+            return false;
+        }
+        board[i][j] = '#';
+        boolean res = dfs(board, word, i + 1, j, index + 1) || dfs(board, word, i - 1, j, index + 1) || dfs(board, word, i, j + 1, index + 1) || dfs(board, word, i, j - 1, index + 1);
+        board[i][j] = word.charAt(index);
         return res;
     }
 }

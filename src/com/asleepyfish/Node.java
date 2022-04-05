@@ -2,17 +2,24 @@ package com.asleepyfish;
 
 /**
  * @Author: asleepyfish
- * @Date: 2022-03-14 21:28
+ * @Date: 2022-04-05 16:14
  * @Description: TODO
  */
 public class Node {
     public int val;
-    public Node next;
-    public Node random;
+    public Node left;
+    public Node right;
 
-    public Node(int val) {
-        this.val = val;
-        this.next = null;
-        this.random = null;
+    public Node() {
+    }
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right) {
+        val = _val;
+        left = _left;
+        right = _right;
     }
 }

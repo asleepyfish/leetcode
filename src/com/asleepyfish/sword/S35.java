@@ -1,6 +1,6 @@
 package com.asleepyfish.sword;
 
-import com.asleepyfish.Node;
+import com.asleepyfish.RandomNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,15 +29,15 @@ import java.util.Map;
  * 节点数目不超过 1000 。
  */
 public class S35 {
-    public Node copyRandomList(Node head) {
+    public RandomNode copyRandomList(RandomNode head) {
         if (head == null) {
             return null;
         }
-        Node cur = head;
-        Map<Node, Node> map = new HashMap<>();
+        RandomNode cur = head;
+        Map<RandomNode, RandomNode> map = new HashMap<>();
         // 复制各节点，并建立 “原节点 -> 新节点” 的 Map 映射
         while (cur != null) {
-            map.put(cur, new Node(cur.val));
+            map.put(cur, new RandomNode(cur.val));
             cur = cur.next;
         }
         cur = head;
