@@ -1,5 +1,9 @@
 package com.asleepyfish.sword;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-05 16:55
@@ -16,7 +20,46 @@ package com.asleepyfish.sword;
  * 数组的数取值为 [0, 13] .
  */
 public class S61 {
+    /**
+     * 1.无重复的牌
+     * 2.最大牌减去最小牌 < 5 (除去大小王)
+     *
+     * @param nums
+     * @return
+     */
     public boolean isStraight(int[] nums) {
-        return false;
+        Set<Integer> set = new HashSet<>();
+        int min = 14;
+        int max = 0;
+        for (int num : nums) {
+            // 例子：0 0 1 2 5 不是，如不加这一句，最小是0，最大是5
+            if (num == 0) {
+                continue;
+            }
+            set.add(num);
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+            if (set.contains(num)) {
+                return false;
+            }
+        }
+        return max - min < 5;
+    }
+
+    public boolean isStraight2(int[] nums) {
+        int joker = 0;
+        // 数组排序
+        Arrays.sort(nums);
+        for (int i = 0; i < 4; i++) {
+            if (nums[i] == 0) {
+                // 统计大小王数量
+                joker++;
+            } else if (nums[i] == nums[i + 1]) {
+                // 若有重复，提前返回 false
+                return false;
+            }
+        }
+        // 最大牌 - 最小牌 < 5 则可构成顺子
+        return nums[4] - nums[joker] < 5;
     }
 }

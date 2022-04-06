@@ -32,4 +32,39 @@ public class S45 {
         }
         return sb.toString();
     }
+
+    public String minNumber2(int[] nums) {
+        String[] strs = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            strs[i] = String.valueOf(nums[i]);
+        }
+        quickSort(strs, 0, nums.length - 1);
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str);
+        }
+        return sb.toString();
+    }
+
+    private void quickSort(String[] strs, int low, int high) {
+        if (low > high) {
+            return;
+        }
+        int i = low;
+        int j = high;
+        String pivot = strs[low];
+        while (i < j) {
+            while (i < j && (strs[j] + pivot).compareTo(pivot + strs[j]) >= 0) {
+                j--;
+            }
+            strs[i] = strs[j];
+            while (i < j && (strs[i] + pivot).compareTo(pivot + strs[i]) <= 0) {
+                i++;
+            }
+            strs[j] = strs[i];
+        }
+        strs[i] = pivot;
+        quickSort(strs, low, i - 1);
+        quickSort(strs, j + 1, high);
+    }
 }

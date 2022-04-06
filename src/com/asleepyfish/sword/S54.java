@@ -29,7 +29,38 @@ import com.asleepyfish.TreeNode;
  * 1 ≤ k ≤ 二叉搜索树元素个数
  */
 public class S54 {
+    StringBuilder sb = new StringBuilder();
+    int res;
+    int k;
+
     public int kthLargest(TreeNode root, int k) {
-        return -1;
+        dfs(root);
+        return Integer.parseInt(sb.toString().split("-")[sb.toString().split("-").length - k]);
+    }
+
+    private void dfs(TreeNode cur) {
+        if (cur == null) {
+            return;
+        }
+        dfs(cur.left);
+        sb.append(cur.val).append("-");
+        dfs(cur.right);
+    }
+
+    public int kthLargest2(TreeNode root, int k) {
+        this.k = k;
+        dfs2(root);
+        return res;
+    }
+
+    private void dfs2(TreeNode cur) {
+        if (cur == null || k == 0) {
+            return;
+        }
+        dfs(cur.right);
+        if (--k == 0) {
+            res = cur.val;
+        }
+        dfs(cur.left);
     }
 }
