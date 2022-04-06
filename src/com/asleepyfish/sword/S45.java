@@ -1,5 +1,7 @@
 package com.asleepyfish.sword;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-05 16:54
@@ -19,6 +21,15 @@ package com.asleepyfish.sword;
  */
 public class S45 {
     public String minNumber(int[] nums) {
-        return null;
+        String[] strs = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            strs[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(strs, (o1, o2) -> (o1 + o2).compareTo(o2 + o1));
+        StringBuilder sb = new StringBuilder();
+        for (String s : strs) {
+            sb.append(s);
+        }
+        return sb.toString();
     }
 }
