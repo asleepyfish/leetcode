@@ -14,12 +14,37 @@ package com.asleepyfish.sword;
  * 限制：
  * 0 <= k <= arr.length <= 10000
  * 0 <= arr[i]<= 10000
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class S40 {
     public int[] getLeastNumbers(int[] arr, int k) {
-        return null;
+        if (arr.length == 0 || k == 0) {
+            return new int[0];
+        }
+        quickSort(arr, 0, arr.length - 1);
+        int[] res = new int[k];
+        System.arraycopy(arr, 0, res, 0, k);
+        return res;
+    }
+
+    private void quickSort(int[] arr, int low, int high) {
+        if (low > high) {
+            return;
+        }
+        int i = low;
+        int j = high;
+        int pivot = arr[low];
+        while (i < j) {
+            while (i < j && pivot <= arr[j]) {
+                j--;
+            }
+            arr[i] = arr[j];
+            while (i < j && pivot >= arr[i]) {
+                i++;
+            }
+            arr[j] = arr[i];
+        }
+        arr[i] = pivot;
+        quickSort(arr, low, i - 1);
+        quickSort(arr, j + 1, high);
     }
 }
