@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-06 23:20
@@ -28,16 +31,45 @@ public class S41 {
     /**
      * initialize your data structure here.
      */
-    public S41() {
+    Queue<Integer> A, B;
+    // List<Integer> list;
 
+    public S41() {
+        // list = new ArrayList<>();
+        // 奇数时候，小顶堆多存一个，偶数时候存一样多
+        // 小顶堆，保存较大的一半
+        A = new PriorityQueue<>();
+        // 大顶堆，保存较小的一半
+        B = new PriorityQueue<>((x, y) -> (y - x));
     }
 
     public void addNum(int num) {
-
+        // list.add(num);
+        if (A.size() != B.size()) {
+            A.add(num);
+            B.add(A.poll());
+        } else {
+            B.add(num);
+            A.add(B.poll());
+        }
     }
 
     public double findMedian() {
-        return 0;
+        /*list = list.stream().sorted().collect(Collectors.toList());
+        return (list.size() % 2 == 1) ? (double) list.get(list.size() / 2) : (double) (list.get(list.size() / 2) + list.get((list.size() - 1) / 2)) / 2;*/
+        return A.size() != B.size() ? A.peek() : (A.peek() + B.peek()) / 2.0;
+
+    }
+
+    public static void main(String[] args) {
+        S41 s41 = new S41();
+        s41.addNum(2);
+        System.out.println(s41.findMedian());
+        s41.addNum(5);
+        System.out.println(s41.findMedian());
+        s41.addNum(3);
+        System.out.println(s41.findMedian());
+        System.out.println((double) (2 + 5) / 2);
     }
 }
 /**
