@@ -2,6 +2,9 @@ package com.asleepyfish.sword;
 
 import com.asleepyfish.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-07 21:26
@@ -12,16 +15,16 @@ import com.asleepyfish.TreeNode;
  * 3
  * / \
  * 9  20
- *   /  \
- *  15   7
+ * /  \
+ * 15   7
  * 返回 true 。
  * 示例 2:
  * 给定二叉树 [1,2,2,3,3,null,null,4,4]
- *     1
- *    / \
- *   2   2
- *  / \
- *  3   3
+ * 1
+ * / \
+ * 2   2
+ * / \
+ * 3   3
  * / \
  * 4   4
  * 返回false 。
@@ -30,6 +33,32 @@ import com.asleepyfish.TreeNode;
  */
 public class S55II {
     public boolean isBalanced(TreeNode root) {
-        return false;
+        if (root == null) {
+            return true;
+        }
+        // return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            int res = height(node.left) - height(node.right);
+            if (res < -1 || res > 1) {
+                return false;
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return true;
+    }
+
+    public int height(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + Math.max(height(node.left), height(node.right));
     }
 }
