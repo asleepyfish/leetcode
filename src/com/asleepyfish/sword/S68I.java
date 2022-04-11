@@ -23,6 +23,15 @@ import com.asleepyfish.TreeNode;
  */
 public class S68I {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return null;
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        if (p.val <= root.val && q.val <= root.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        if (p.val >= root.val && q.val >= root.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+        return root;
     }
 }
