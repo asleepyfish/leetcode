@@ -22,6 +22,31 @@ package com.asleepyfish.sword;
  */
 public class S16 {
     public double myPow(double x, int n) {
-        return 0;
+        if (n == 0) {
+            return 1;
+        }
+        int times = n > 0 ? n : -n;
+        double res = 1;
+        for (int i = 0; i < times; i++) {
+            res *= x;
+        }
+        return n > 0 ? res : 1 / res;
+    }
+
+    public double myPow2(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n == 1) {
+            return x;
+        }
+        if (n == -1) {
+            return 1 / x;
+        }
+        if (n % 2 == 0) {
+            return myPow2(x * x, n / 2);
+        } else {
+            return x * myPow2(x * x, n / 2);
+        }
     }
 }

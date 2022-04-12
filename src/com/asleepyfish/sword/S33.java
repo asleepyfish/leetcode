@@ -22,6 +22,28 @@ package com.asleepyfish.sword;
  */
 public class S33 {
     public boolean verifyPostorder(int[] postorder) {
-        return false;
+        return verifyPostorder(postorder, 0, postorder.length - 1);
+    }
+
+    public boolean verifyPostorder(int[] postorder, int start, int end) {
+        if (start >= end) {
+            return true;
+        }
+        int root = postorder[end];
+        int i = start;
+        while (i < end) {
+            if (postorder[i] > root) {
+                break;
+            }
+            i++;
+        }
+        int j = i;
+        while (j < end) {
+            if (postorder[j] < root) {
+                return false;
+            }
+            j++;
+        }
+        return verifyPostorder(postorder, start, i - 1) && verifyPostorder(postorder, i, end - 1);
     }
 }
