@@ -34,19 +34,22 @@ public class S16 {
     }
 
     public double myPow2(double x, int n) {
-        if (n == 0) {
-            return 1;
+        if (x == 0) {
+            return 0;
         }
-        if (n == 1) {
-            return x;
+        long m = n;
+        if (m < 0) {
+            x = 1 / x;
+            m = -m;
         }
-        if (n == -1) {
-            return 1 / x;
+        double res = 1.0;
+        while (m > 0) {
+            if ((m & 1) == 1) {
+                res *= x;
+            }
+            x *= x;
+            m >>= 1;
         }
-        if (n % 2 == 0) {
-            return myPow2(x * x, n / 2);
-        } else {
-            return x * myPow2(x * x, n / 2);
-        }
+        return res;
     }
 }

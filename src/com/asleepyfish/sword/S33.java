@@ -46,4 +46,20 @@ public class S33 {
         }
         return verifyPostorder(postorder, start, i - 1) && verifyPostorder(postorder, i, end - 1);
     }
+
+    private boolean recur(int[] postorder, int left, int right) {
+        //（结束条件最后看！）左右指针重合的时候，即left~right区间只有一个数
+        if (left >= right) {
+            return true;
+        }
+        int i = left;
+        while (postorder[i] < postorder[right]) {
+            i++;
+        }
+        int j = i;
+        while (postorder[i] > postorder[right]) {
+            i++;
+        }
+        return i == right && recur(postorder, left, j - 1) && recur(postorder, j, right - 1);
+    }
 }
