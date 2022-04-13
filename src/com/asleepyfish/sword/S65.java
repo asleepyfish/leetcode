@@ -14,10 +14,16 @@ package com.asleepyfish.sword;
  */
 public class S65 {
     public int add(int a, int b) {
-        while (b != 0) {
+        /*while (b != 0) {
             int sum = a ^ b;
             b = (a & b) << 1;
             a = sum;
+        }
+        return a;*/
+        while (b != 0) {
+            int carry = (a & b) << 1;
+            a ^= b;
+            b = carry;
         }
         return a;
     }

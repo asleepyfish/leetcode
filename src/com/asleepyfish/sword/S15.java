@@ -37,4 +37,14 @@ public class S15 {
         }
         return res;
     }
+
+    public int hammingWeight2(int n) {
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            if ((n & (1 << i)) != 0) {
+                res++;
+            }
+        }
+        return res;
+    }
 }
