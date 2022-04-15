@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-14 22:32
@@ -17,6 +20,30 @@ package com.asleepyfish.sword;
  */
 public class S57II {
     public int[][] findContinuousSequence(int target) {
-        return null;
+        if (target == 1) {
+            return new int[0][0];
+        }
+        int[][] res;
+        List<int[]> list = new ArrayList<>();
+        for (int i = 1; i <= target / 2; i++) {
+            double tmp = (-1 + Math.sqrt(1 + 4 * ((long) i * i - i + 2L * target))) / 2;
+            if (tmp % 1 == 0 && tmp > i && tmp < target) {
+                int[] generate = generate(i, (int) tmp);
+                list.add(generate);
+            }
+        }
+        res = new int[list.size()][];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+
+    private int[] generate(int i, int j) {
+        int[] res = new int[j - i + 1];
+        for (int k = 0; k < res.length; k++) {
+            res[k] = i++;
+        }
+        return res;
     }
 }

@@ -1,5 +1,11 @@
 package com.asleepyfish.sword;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-14 22:31
@@ -14,6 +20,32 @@ package com.asleepyfish.sword;
  */
 public class S39 {
     public int majorityElement(int[] nums) {
-        return -1;
+        Map<Integer, Long> map = Arrays.stream(nums).boxed().collect(Collectors.toList()).stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        int res = nums[0];
+        int max = 0;
+        for (Map.Entry<Integer, Long> entry : map.entrySet()) {
+            if (entry.getValue() > max) {
+                max = Math.toIntExact(entry.getValue());
+                res = entry.getKey();
+            }
+            System.out.println(entry.getKey() + "===" + entry.getValue());
+        }
+        return res;
+    }
+
+    public int majorityElement2(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        int res = nums[0];
+        int max = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                res = entry.getKey();
+            }
+        }
+        return res;
     }
 }
