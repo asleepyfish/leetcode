@@ -46,4 +46,25 @@ public class S57II {
         }
         return res;
     }
+
+    public int[][] findContinuousSequence2(int target) {
+        int left = 1;
+        int right = 2;
+        int sum = 3;
+        List<int[]> res = new ArrayList<>();
+        while (left <= target / 2) {
+            if (sum == target) {
+                int[] generate = generate(left, right);
+                res.add(generate);
+            }
+            if (sum < target) {
+                right++;
+                sum += right;
+            } else {
+                sum -= left;
+                left++;
+            }
+        }
+        return res.toArray(new int[res.size()][]);
+    }
 }

@@ -48,4 +48,22 @@ public class S39 {
         }
         return res;
     }
+
+    public int majorityElement3(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+
+    public int majorityElement4(int[] nums) {
+        int votes = 0;
+        // 众数
+        int res = 0;
+        for (int num : nums) {
+            if (votes == 0) {
+                res = num;
+            }
+            votes += num == res ? 1 : -1;
+        }
+        return res;
+    }
 }
