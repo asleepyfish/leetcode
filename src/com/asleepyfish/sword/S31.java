@@ -1,5 +1,8 @@
 package com.asleepyfish.sword;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-14 22:30
@@ -22,6 +25,26 @@ package com.asleepyfish.sword;
  */
 public class S31 {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        return false;
+        Deque<Integer> stack = new ArrayDeque<>();
+        int pushIndex = 0;
+        int popIndex = 0;
+        while (pushIndex != pushed.length) {
+            if (stack.isEmpty() || popped[popIndex] != stack.peek()) {
+                stack.push(pushed[pushIndex]);
+                pushIndex++;
+            } else {
+                popIndex++;
+                stack.poll();
+            }
+        }
+        while (!stack.isEmpty()) {
+            if (popped[popIndex] == stack.peek()) {
+                popIndex++;
+                stack.poll();
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }
