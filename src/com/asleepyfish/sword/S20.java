@@ -43,7 +43,7 @@ import java.util.Map;
  * s 仅含英文字母（大写和小写），数字（0-9），加号 '+' ，减号 '-' ，空格 ' ' 或者点 '.' 。
  */
 public class S20 {
-    public boolean isNumber(String s) {
+/*    public boolean isNumber(String s) {
         Map<State, Map<CharType, State>> transfer = new HashMap<>();
         Map<CharType, State> initialMap = new HashMap<>() {{
             put(CharType.CHAR_SPACE, State.STATE_INITIAL);
@@ -52,7 +52,7 @@ public class S20 {
             put(CharType.CHAR_SIGN, State.STATE_INT_SIGN);
         }};
         transfer.put(State.STATE_INITIAL, initialMap);
-        Map<CharType, State> intSignMap = new HashMap<CharType, State>() {{
+        Map<CharType, State> intSignMap = new HashMap<>() {{
             put(CharType.CHAR_NUMBER, State.STATE_INTEGER);
             put(CharType.CHAR_POINT, State.STATE_POINT_WITHOUT_INT);
         }};
@@ -149,5 +149,5 @@ public class S20 {
         CHAR_SIGN,
         CHAR_SPACE,
         CHAR_ILLEGAL
-    }
+    }*/
 }
