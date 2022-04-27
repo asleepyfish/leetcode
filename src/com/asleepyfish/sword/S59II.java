@@ -1,5 +1,9 @@
 package com.asleepyfish.sword;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-23 22:50
@@ -21,20 +25,35 @@ package com.asleepyfish.sword;
  * 1 <= value <= 10^5
  */
 public class S59II {
-    public S59II() {
+    Deque<Integer> queue;
+    Deque<Integer> help;
 
+    public S59II() {
+        queue = new ArrayDeque<>();
+        help = new ArrayDeque<>();
     }
 
     public int max_value() {
-        return -1;
+        return help.isEmpty() ? -1 : help.peekFirst();
     }
 
     public void push_back(int value) {
-
+        queue.offer(value);
+        while (!help.isEmpty() && help.peekLast() < value) {
+            help.removeLast();
+        }
+        help.offer(value);
     }
 
     public int pop_front() {
-        return -1;
+        if (queue.isEmpty()) {
+            return -1;
+        }
+        int val = queue.removeFirst();
+        if (help.peekFirst() == val) {
+            help.removeFirst();
+        }
+        return val;
     }
 }
 
