@@ -1,5 +1,7 @@
 package com.asleepyfish.sword;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-23 22:53
@@ -17,6 +19,20 @@ package com.asleepyfish.sword;
  */
 public class S60 {
     public double[] dicesProbability(int n) {
-        return null;
+        double[] dp = new double[6];
+        Arrays.fill(dp, 1 / 6.0);
+        for (int i = 2; i <= n; i++) {
+            double[] tmp = new double[5 * i + 1];
+            // 这一步循环表示前i - 1步得到的概率
+            for (int j = 0; j < dp.length; j++) {
+                // 这步循环表示这次的骰子可以取1-6
+                for (int k = 0; k < 6; k++) {
+                    // 本次的概率受到上一步（i - 1）也就是dp[j]的影响
+                    tmp[j + k] += dp[j] / 6.0;
+                }
+            }
+            dp = tmp;
+        }
+        return dp;
     }
 }
