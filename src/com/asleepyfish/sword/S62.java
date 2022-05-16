@@ -1,5 +1,7 @@
 package com.asleepyfish.sword;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-04-23 22:54
@@ -18,6 +20,19 @@ package com.asleepyfish.sword;
  */
 public class S62 {
     public int lastRemaining(int n, int m) {
-        return -1;
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+        int index = 0;
+        while (n > 1) {
+            index = (index + m - 1) % n;
+            if (n - 1 - index > 0) {
+                System.arraycopy(arr, index + 1, arr, index, n - 1 - index);
+            }
+            arr = Arrays.copyOf(arr, --n);
+            System.out.println(Arrays.toString(arr));
+        }
+        return arr[0];
     }
 }
