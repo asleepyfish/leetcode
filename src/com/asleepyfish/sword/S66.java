@@ -14,6 +14,37 @@ package com.asleepyfish.sword;
  */
 public class S66 {
     public int[] constructArr(int[] a) {
-        return null;
+        if (a == null || a.length == 0) {
+            return new int[0];
+        }
+        int[] res = new int[a.length];
+        for (int i = 0; i < res.length; i++) {
+            int tmp = 1;
+            for (int j = 0; j < res.length; j++) {
+                if (j == i) {
+                    continue;
+                }
+                tmp *= a[j];
+            }
+            res[i] = tmp;
+        }
+        return res;
+    }
+
+    public int[] constructArr2(int[] a) {
+        if (a == null || a.length == 0) {
+            return new int[0];
+        }
+        int[] res = new int[a.length];
+        res[0] = 1;
+        for (int i = 1; i <= a.length - 1; i++) {
+            res[i] = res[i - 1] * a[i - 1];
+        }
+        int tmp = 1;
+        for (int i = a.length - 2; i >= 0; i--) {
+            tmp *= a[i + 1];
+            res[i] *= tmp;
+        }
+        return res;
     }
 }

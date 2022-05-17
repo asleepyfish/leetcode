@@ -31,7 +31,7 @@ public class S62 {
             if (n - 1 - index > 0) {
                 System.arraycopy(arr, index + 1, arr, index, n - 1 - index);
             }
-            arr = Arrays.copyOf(arr, --n);
+            n--;
         }
         return arr[0];
     }
