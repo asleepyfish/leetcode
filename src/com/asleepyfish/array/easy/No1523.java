@@ -18,6 +18,10 @@ package com.asleepyfish.array.easy;
  */
 public class No1523 {
     public int countOdds(int low, int high) {
-        return -1;
+        return isEven(low) && isEven(high) ? (high - low) / 2 : (high - low) / 2 + 1;
+    }
+
+    private boolean isEven(int x) {
+        return x % 2 == 0;
     }
 }

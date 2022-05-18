@@ -1,5 +1,7 @@
 package com.asleepyfish.array.medium;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,6 +25,37 @@ import java.util.List;
  */
 public class No15 {
     public List<List<Integer>> threeSum(int[] nums) {
-        return null;
+        if (nums == null || nums.length < 3) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        boolean flag = false;
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                for (int k = j + 1; k < nums.length; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        List<Integer> tmp = Arrays.asList(nums[i], nums[j], nums[k]);
+                        if (!flag && nums[i] == 0 && nums[j] == 0) {
+                            res.add(tmp);
+                            flag = true;
+                            break;
+                        }
+                        if (!contains(res, tmp)) {
+                            res.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    private boolean contains(List<List<Integer>> main, List<Integer> sub) {
+        for (List<Integer> list : main) {
+            if (list.containsAll(sub)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

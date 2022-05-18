@@ -1,5 +1,7 @@
 package com.asleepyfish.array.easy;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-17 22:47
@@ -20,6 +22,19 @@ package com.asleepyfish.array.easy;
  */
 public class No169 {
     public int majorityElement(int[] nums) {
-        return -1;
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+
+    public int majorityElement2(int[] nums) {
+        int votes = 0;
+        int res = 0;
+        for (int num : nums) {
+            if (votes == 0) {
+                res = num;
+            }
+            votes += res == num ? 1 : -1;
+        }
+        return res;
     }
 }

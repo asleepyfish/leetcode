@@ -30,6 +30,18 @@ package com.asleepyfish.array.easy;
  */
 public class No1491 {
     public double average(int[] salary) {
-        return 0;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        double res = 0.0;
+        for (int i : salary) {
+            if (i < min) {
+                min = i;
+            }
+            if (i > max) {
+                max = i;
+            }
+            res += i;
+        }
+        return (res - max - min) / (salary.length - 2);
     }
 }
