@@ -20,6 +20,25 @@ package com.asleepyfish.array.medium;
  */
 public class No56 {
     public int[][] merge(int[][] intervals) {
-        return null;
+        int len = intervals.length;
+        Arrays.sort(intervals, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o1[0] - o2[0]);
+        int min = intervals[0][0];
+        int max = intervals[0][1];
+        int[][] res = new int[len][2];
+        int index = 0;
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] <= max) {
+                max = Math.max(max, intervals[i][1]);
+            } else {
+                res[index][0] = min;
+                res[index][1] = max;
+                min = intervals[i][0];
+                max = intervals[i][1];
+                index++;
+            }
+        }
+        res[index][0] = min;
+        res[index][1] = max;
+        return Arrays.copyOf(res, index + 1);
     }
 }

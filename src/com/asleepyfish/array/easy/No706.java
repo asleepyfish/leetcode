@@ -1,5 +1,7 @@
 package com.asleepyfish.array.easy;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-18 22:03
@@ -31,20 +33,23 @@ package com.asleepyfish.array.easy;
  * 最多调用 104 次 put、get 和 remove 方法
  */
 public class No706 {
-    public No706() {
+    int[] arr;
 
+    public No706() {
+        arr = new int[1000001];
+        Arrays.fill(arr, -1);
     }
 
     public void put(int key, int value) {
-
+        arr[key] = value;
     }
 
     public int get(int key) {
-        return -1;
+        return arr[key];
     }
 
     public void remove(int key) {
-
+        arr[key] = -1;
     }
 
     /**

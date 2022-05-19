@@ -24,6 +24,14 @@ package com.asleepyfish.array.easy;
  */
 public class No1281 {
     public int subtractProductAndSum(int n) {
-        return -1;
+        int product = 1;
+        int sum = 0;
+        while (n != 0) {
+            int num = n % 10;
+            product *= num;
+            sum += num;
+            n /= 10;
+        }
+        return product - sum;
     }
 }
