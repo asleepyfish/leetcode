@@ -26,6 +26,17 @@ package com.asleepyfish.array.easy;
  */
 public class No1779 {
     public int nearestValidPoint(int x, int y, int[][] points) {
-        return -1;
+        int min = Integer.MAX_VALUE;
+        int res = -1;
+        for (int i = 0; i < points.length; i++) {
+            if (points[i][0] == x || points[i][1] == y) {
+                int tmp = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
+                if (tmp < min) {
+                    min = tmp;
+                    res = i;
+                }
+            }
+        }
+        return res;
     }
 }

@@ -1,5 +1,8 @@
 package com.asleepyfish.array.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-19 21:32
@@ -20,6 +23,13 @@ package com.asleepyfish.array.easy;
  */
 public class No217 {
     public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(num)) {
+                return true;
+            }
+            set.add(num);
+        }
         return false;
     }
 }

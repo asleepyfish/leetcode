@@ -1,5 +1,7 @@
 package com.asleepyfish.array.easy;
 
+import java.util.Arrays;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-19 21:38
@@ -17,6 +19,27 @@ package com.asleepyfish.array.easy;
  */
 public class No976 {
     public int largestPerimeter(int[] nums) {
-        return -1;
+        Arrays.sort(nums);
+        for (int i = nums.length - 1; i >= 2; i--) {
+            for (int j = i - 1; j >= 1; j--) {
+                for (int k = j - 1; k >= 0; k--) {
+                    if (nums[j] + nums[k] > nums[i]) {
+                        return nums[i] + nums[j] + nums[k];
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int largestPerimeter2(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = nums.length - 1; i >= 2; i--) {
+            // 这一步里面如果num[i - 2] + nums[i - 1]都不大于nums[i]，更没必要比较前面的了，因为排序过了
+            if (nums[i- 2] + nums[i - 1] > nums[i]) {
+                return nums[i - 2] + nums[i - 1] + nums[i];
+            }
+        }
+        return 0;
     }
 }
