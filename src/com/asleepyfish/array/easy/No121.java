@@ -22,6 +22,12 @@ package com.asleepyfish.array.easy;
  */
 public class No121 {
     public int maxProfit(int[] prices) {
-        return -1;
+        int min = Integer.MAX_VALUE;
+        int profit = 0;
+        for (int price : prices) {
+            min = Math.min(price, min);
+            profit = Math.max(profit, price - min);
+        }
+        return profit;
     }
 }

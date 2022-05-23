@@ -33,5 +33,23 @@ package com.asleepyfish.array.easy;
  */
 public class No88 {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = 0;
+        int j = 0;
+        int[] sorted = new int[m + n];
+        int index = 0;
+        while (i < m || j < n) {
+            int cur;
+            if (i == m) {
+                cur = nums2[j++];
+            } else if (j == n) {
+                cur = nums1[i++];
+            } else if (nums1[i] < nums2[j]) {
+                cur = nums1[i++];
+            } else {
+                cur = nums2[j++];
+            }
+            sorted[index++] = cur;
+        }
+        System.arraycopy(sorted, 0, nums1, 0, m + n);
     }
 }

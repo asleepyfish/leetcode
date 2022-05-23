@@ -1,5 +1,8 @@
 package com.asleepyfish.array.easy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-22 21:44
@@ -26,6 +29,13 @@ package com.asleepyfish.array.easy;
  */
 public class No1 {
     public int[] twoSum(int[] nums, int target) {
-        return null;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{i, map.get(target - nums[i])};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[0];
     }
 }
