@@ -1,7 +1,6 @@
 package com.asleepyfish.array.easy;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: asleepyfish
