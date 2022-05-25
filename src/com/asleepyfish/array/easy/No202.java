@@ -1,5 +1,8 @@
 package com.asleepyfish.array.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @Author: asleepyfish
  * @Date: 2022-05-22 21:51
@@ -26,6 +29,20 @@ package com.asleepyfish.array.easy;
  */
 public class No202 {
     public boolean isHappy(int n) {
-        return false;
+        Set<Integer> set = new HashSet<>();
+        while (n != 1 && !set.contains(n)) {
+            set.add(n);
+            n = getNext(n);
+        }
+        return n == 1;
+    }
+
+    private int getNext(int n) {
+        int res = 0;
+        while (n > 0) {
+            res += (n % 10) * (n % 10);
+            n /= 10;
+        }
+        return res;
     }
 }
